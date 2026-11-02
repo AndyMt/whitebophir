@@ -1,0 +1,5 @@
+<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+    <title>Card</title>
+    <path fill="none" stroke="#000" stroke-width="2" d="M12 14h36v32H12z"/>
+    <path fill="#000" stroke="none" d="M16 22h20v2H16zM16 30h28v2H16zM16 36h24v2H16z"/>
+</svg>

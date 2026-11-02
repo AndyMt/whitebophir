@@ -1,5 +1,6 @@
 {
   "ar": {
+    "card": "بطاقة",
     "white-out": "مزيل الحبر",
     "board_name_placeholder": "اسم اللوحة",
     "circle": "دائرة",
@@ -122,6 +123,7 @@
     "community_rules_bans": "لكل حظر موعد انتهاء. يمكنك العودة عند انتهائه. إذا خالفت القواعد مجددًا، فقد تُحظر مرة أخرى على الفور دون تحذير إضافي. وقد تؤدي المخالفات المتكررة إلى حظر مؤقت لمدة أطول."
   },
   "be": {
+    "card": "Картка",
     "white-out": "Замазка",
     "board_name_placeholder": "Назва дошкі…",
     "circle": "Круг",
@@ -244,6 +246,7 @@
     "community_rules_bans": "У кожнай блакіроўкі ёсць тэрмін заканчэння. Калі ён скончыцца, можна вярнуцца. Калі вы зноў парушыце правілы, вас могуць адразу заблакіраваць паўторна, без новага папярэджання. За паўторныя парушэнні тэрмін часовай блакіроўкі можа быць даўжэйшым."
   },
   "ca": {
+    "card": "Targeta",
     "white-out": "Corrector blanc",
     "board_name_placeholder": "Nom de la pissarra...",
     "circle": "Cercle",
@@ -366,6 +369,7 @@
     "community_rules_bans": "Tots els bloquejos tenen una data de finalització. Podeu tornar quan el bloqueig hagi vençut. Si torneu a infringir les normes, us poden tornar a bloquejar immediatament sense cap altre avís. Les infraccions reiterades poden comportar bloquejos temporals més llargs."
   },
   "de": {
+    "card": "Karte",
     "board_name_placeholder": "Name des Whiteboards…",
     "circle": "Kreis",
     "click_to_toggle": "Klicke zum Umschalten",
@@ -488,6 +492,7 @@
     "community_rules_bans": "Jede Sperre hat ein Enddatum. Nach ihrem Ablauf darfst du zurückkehren. Wenn du erneut gegen die Regeln verstößt, kannst du sofort und ohne weitere Warnung wieder gesperrt werden. Wiederholte Verstöße können zu längeren befristeten Sperren führen."
   },
   "en": {
+    "card": "Card",
     "white-out": "White-out",
     "board_name_placeholder": "Name of the board…",
     "circle": "Circle",
@@ -610,6 +615,7 @@
     "community_rules_bans": "Every ban has an end date. You may return when it expires. If you break the rules again, you may be banned again immediately without another warning. Repeated violations can lead to longer temporary bans."
   },
   "es": {
+    "card": "Tarjeta",
     "board_name_placeholder": "Nombre de la pizarra…",
     "circle": "Círculo",
     "click_to_toggle": "haz clic para alternar",
@@ -732,6 +738,7 @@
     "community_rules_bans": "Todos los bloqueos tienen una fecha de finalización. Puedes volver cuando termine el tuyo. Si vuelves a infringir las normas, se te podrá bloquear de nuevo de inmediato y sin otra advertencia. Las infracciones reiteradas pueden dar lugar a bloqueos temporales más largos."
   },
   "fr": {
+    "card": "Carte",
     "board_name_placeholder": "Nom du tableau…",
     "circle": "Cercle",
     "click_to_toggle": "cliquer pour changer",
@@ -854,6 +861,7 @@
     "community_rules_bans": "Chaque bannissement a une date de fin. Vous pouvez revenir à son expiration. Si vous enfreignez à nouveau les règles, vous pouvez être immédiatement banni à nouveau, sans autre avertissement. Des infractions répétées peuvent entraîner des bannissements temporaires plus longs."
   },
   "hu": {
+    "card": "Kártya",
     "white-out": "Lefedő",
     "board_name_placeholder": "Tábla neve…",
     "circle": "Kör",
@@ -976,6 +984,7 @@
     "community_rules_bans": "Minden kitiltásnak van lejárati ideje. A lejárta után visszatérhetsz. Ha újra megszeged a szabályokat, további figyelmeztetés nélkül, azonnal újra kitilthatnak. Ismételt szabálysértések esetén hosszabb ideiglenes kitiltást is kaphatsz."
   },
   "id": {
+    "card": "Kartu",
     "white-out": "Cairan koreksi",
     "board_name_placeholder": "Nama papan…",
     "circle": "Lingkaran",
@@ -1098,6 +1107,7 @@
     "community_rules_bans": "Setiap pemblokiran memiliki tanggal berakhir. Anda boleh kembali setelah masa pemblokiran berakhir. Jika Anda melanggar aturan lagi, Anda dapat langsung diblokir kembali tanpa peringatan tambahan. Pelanggaran berulang dapat mengakibatkan pemblokiran sementara yang lebih lama."
   },
   "it": {
+    "card": "Scheda",
     "board_name_placeholder": "Nome della lavagna…",
     "circle": "Cerchio",
     "click_to_toggle": "Fai clic per attivare o disattivare",
@@ -1220,6 +1230,7 @@
     "community_rules_bans": "Ogni blocco ha una data di scadenza. Puoi tornare quando scade. Se violi di nuovo le regole, puoi essere bloccato di nuovo immediatamente, senza un ulteriore avvertimento. Le violazioni ripetute possono comportare blocchi temporanei più lunghi."
   },
   "ja": {
+    "card": "カード",
     "board_name_placeholder": "ボードの名前",
     "circle": "円",
     "click_to_toggle": "クリックして切り替えます",
@@ -1342,6 +1353,7 @@
     "community_rules_bans": "すべての利用停止には終了日時があります。期間が終われば戻ることができます。再びルールに違反すると、追加の警告なしに直ちに利用停止になることがあります。違反を繰り返すと、利用停止期間が長くなる場合があります。"
   },
   "my": {
+    "card": "က드",
     "board_name_placeholder": "ဝှိုက်ဘုတ်အမည် ... ",
     "circle": "စက်ဝိုင်း",
     "click_to_toggle": "ပြောင်းလဲရန် နှိပ်ပါ",
@@ -1464,6 +1476,7 @@
     "community_rules_bans": "ပိတ်ပင်မှုတိုင်းတွင် သက်တမ်းကုန်ဆုံးရက် ရှိသည်။ သက်တမ်းကုန်လျှင် ပြန်လာနိုင်သည်။ စည်းမျဉ်းကို ထပ်မံချိုးဖောက်လျှင် နောက်ထပ်သတိပေးချက်မပေးဘဲ ချက်ချင်း ပြန်လည်ပိတ်ပင်ခံရနိုင်သည်။ ထပ်ခါတလဲလဲ ချိုးဖောက်ပါက ယာယီပိတ်ပင်သည့် ကာလ ပိုမိုကြာရှည်နိုင်သည်။"
   },
   "pt": {
+    "card": "Cartão",
     "white-out": "Corretivo",
     "board_name_placeholder": "Nome do quadro...",
     "circle": "Círculo",
@@ -1586,6 +1599,7 @@
     "community_rules_bans": "Todo banimento tem uma data de término. Você pode voltar quando ele expirar. Se infringir as regras novamente, poderá ser banido de novo imediatamente, sem outro aviso. Infrações repetidas podem levar a banimentos temporários mais longos."
   },
   "ru": {
+    "card": "Карточка",
     "board_name_placeholder": "Название доски",
     "circle": "Круг",
     "click_to_toggle": "нажмите, чтобы переключиться",
@@ -1708,6 +1722,7 @@
     "community_rules_bans": "У каждой блокировки есть срок окончания. После его истечения можно вернуться. Если вы снова нарушите правила, вас могут сразу заблокировать повторно, без дополнительного предупреждения. Повторные нарушения могут привести к более длительным временным блокировкам."
   },
   "sw": {
+    "card": "Kadi",
     "board_name_placeholder": "Jina la ubao mweupe ...",
     "circle": "mduara",
     "click_to_toggle": "Bofya ili kubadilisha",
@@ -1830,6 +1845,7 @@
     "community_rules_bans": "Kila kipindi cha kufungiwa kina tarehe ya kuisha. Unaweza kurudi muda wake ukiisha. Ukikiuka kanuni tena, unaweza kufungiwa tena mara moja bila onyo jingine. Ukiukaji wa mara kwa mara unaweza kusababisha kufungiwa kwa muda mrefu zaidi."
   },
   "th": {
+    "card": "การ์ด",
     "board_name_placeholder": "ชื่อไวท์บอร์ด ...",
     "circle": "วงกลม",
     "click_to_toggle": "คลิกเพื่อสลับ",
@@ -1952,6 +1968,7 @@
     "community_rules_bans": "การแบนทุกครั้งมีวันสิ้นสุด คุณสามารถกลับมาได้เมื่อการแบนสิ้นสุดลง หากคุณฝ่าฝืนกฎอีก คุณอาจถูกแบนซ้ำทันทีโดยไม่มีการเตือนอีก การฝ่าฝืนซ้ำอาจทำให้ถูกแบนชั่วคราวนานขึ้น"
   },
   "uk": {
+    "card": "Картка",
     "white-out": "Коректор",
     "board_name_placeholder": "Назва дошки…",
     "circle": "Коло",
@@ -2074,6 +2091,7 @@
     "community_rules_bans": "Кожне блокування має дату завершення. Після закінчення його строку можна повернутися. Якщо ви знову порушите правила, вас можуть одразу заблокувати повторно, без нового попередження. Повторні порушення можуть призвести до триваліших тимчасових блокувань."
   },
   "vi": {
+    "card": "Thẻ",
     "white-out": "Bút xóa",
     "board_name_placeholder": "Tên bảng…",
     "circle": "Hình tròn",
@@ -2196,6 +2214,7 @@
     "community_rules_bans": "Mọi lệnh cấm đều có ngày hết hiệu lực. Bạn có thể quay lại khi lệnh cấm hết hiệu lực. Nếu tiếp tục vi phạm quy định, bạn có thể bị cấm lại ngay lập tức mà không được cảnh cáo thêm. Vi phạm nhiều lần có thể dẫn đến các lệnh cấm tạm thời dài hơn."
   },
   "zh-CN": {
+    "card": "卡片",
     "board_name_placeholder": "白板名称",
     "circle": "圆",
     "click_to_toggle": "点击以切换",
@@ -2318,6 +2337,7 @@
     "community_rules_bans": "每次封禁都有到期时间。封禁到期后，你可以回来。如果再次违规，你可能会立即被重新封禁，不再另行警告。反复违规可能导致更长时间的临时封禁。"
   },
   "zh-TW": {
+    "card": "卡片",
     "board_name_placeholder": "白板名稱",
     "circle": "圓形",
     "click_to_toggle": "點擊以切換",
@@ -2440,6 +2460,7 @@
     "community_rules_bans": "每次封鎖都有到期日。到期後，你可以回來使用白板。如果再次違規，你可能立即再次被封鎖，不會另行警告。屢次違規可能導致更長的暫時封鎖。"
   },
   "pl": {
+    "card": "Karta",
     "board_name_placeholder": "Nazwa tablicy",
     "circle": "Okrąg",
     "click_to_toggle": "kliknij, aby przełączyć",

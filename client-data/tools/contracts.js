@@ -6,7 +6,7 @@
  * can never reach server startup, validation, or persistence.
  */
 
-import { getLocalGeometryBounds } from "../js/message_common.js";
+import { clampSize, getLocalGeometryBounds } from "../js/message_common.js";
 import { TOOL_BY_ID, TOOL_CODE_BY_ID, TOOL_MANIFEST } from "./manifest.js";
 import {
   renderPencilPath,
@@ -20,6 +20,17 @@ import {
 } from "./shape_contract.js";
 
 /** @typedef {import("./shape_contract.js").ToolContract} ToolContract */
+
+/**
+ * Card text font size follows the Text tool's rule: derived from the stored
+ * stroke size preference, matching client-data/tools/text/index.js.
+ * @param {unknown} size
+ * @returns {number}
+ */
+function cardFontSize(size) {
+  const raw = typeof size === "number" && size > 0 ? size : 40;
+  return clampSize(Math.round(raw * 1.5 + 120));
+}
 
 /**
  * Keep protocol metadata in the manifest while storage methods remain shared
@@ -364,6 +375,127 @@ const textContract = defineStoredToolContract("text", {
   },
 });
 
+const cardContract = defineStoredToolContract("card", {
+  summarizeStoredSvgItem(entry, paintOrder, helpers) {
+    const rectMatch = /<rect\b[^>]*>/.exec(entry.content || "");
+    if (!rectMatch) return null;
+    const rect =
+      /** @type {{tagName: string, attributes: {[name: string]: string}, rawAttributes: string}} */ ({
+        tagName: "rect",
+        attributes: {},
+        rawAttributes: rectMatch[0],
+      });
+    for (const attrMatch of rectMatch[0].matchAll(/([a-zA-Z-]+)="([^"]*)"/g)) {
+      const name = attrMatch[1];
+      const value = attrMatch[2];
+      if (name && value !== undefined) rect.attributes[name] = value;
+    }
+    const x = helpers.parseNumber(helpers.readStoredSvgAttribute(rect, "x"));
+    const y = helpers.parseNumber(helpers.readStoredSvgAttribute(rect, "y"));
+    const width = helpers.parseNumber(
+      helpers.readStoredSvgAttribute(rect, "width"),
+    );
+    const height = helpers.parseNumber(
+      helpers.readStoredSvgAttribute(rect, "height"),
+    );
+    const size = helpers.parseNumber(
+      helpers.readStoredSvgAttribute(rect, "stroke-width"),
+    );
+    if (
+      x === undefined ||
+      y === undefined ||
+      width === undefined ||
+      height === undefined ||
+      size === undefined
+    ) {
+      return null;
+    }
+    const labelMatch =
+      /<text\b[^>]*class="[^"]*card-label[^"]*"[^>]*>([^<]*)<\/text>/.exec(
+        entry.content || "",
+      );
+    const bodyMatch =
+      /<text\b[^>]*class="[^"]*card-body[^"]*"[^>]*>([^<]*)<\/text>/.exec(
+        entry.content || "",
+      );
+    return summarizeStoredShape(
+      {
+        id: helpers.id,
+        tool: "card",
+        paintOrder,
+        data: {
+          x,
+          y,
+          x2: x + width,
+          y2: y + height,
+          color: helpers.readStoredSvgAttribute(rect, "stroke") || "#000000",
+          size,
+          label: labelMatch ? labelMatch[1] : "",
+          body: bodyMatch ? bodyMatch[1] : "",
+        },
+        localBounds: {
+          minX: x,
+          minY: y,
+          maxX: x + width,
+          maxY: y + height,
+        },
+      },
+      helpers.opacity,
+      helpers.transform,
+      helpers.decorateStoredItemData,
+    );
+  },
+  serializeStoredSvgItem(item, helpers) {
+    const bounds = normalizeRectBounds(
+      helpers.numberOrZero(item.x),
+      helpers.numberOrZero(item.y),
+      helpers.numberOrZero(item.x2),
+      helpers.numberOrZero(item.y2),
+    );
+    const transform = helpers.renderTransformAttribute(item.transform);
+    const id = typeof item.id === "string" ? helpers.escapeHtml(item.id) : "";
+    const color = helpers.escapeHtml(item.color || "#000000");
+    const size = helpers.numberOrZero(item.size) | 0;
+    const opacity =
+      typeof item.opacity === "number" ? ` opacity="${item.opacity}"` : "";
+    const label = helpers.escapeHtml(String(item.label ?? "Title"));
+    const body = helpers.escapeHtml(String(item.body ?? "Text"));
+    const fontSize = cardFontSize(item.size);
+    const rowHeight = Math.round(fontSize * 1.2);
+    return (
+      `<g id="${id}" class="card"` +
+      ` stroke="${color}" stroke-width="${size}" fill="none"` +
+      `${opacity}${transform}>` +
+      `<rect class="card-box" x="${bounds.x}" y="${bounds.y}" width="${bounds.width}" height="${bounds.height}"></rect>` +
+      `<text class="card-label" x="${bounds.x + 4}" y="${bounds.y + fontSize}" font-family="sans-serif" font-size="${fontSize}" fill="${color}" stroke="none">${label}</text>` +
+      `<text class="card-body" x="${bounds.x + 4}" y="${bounds.y + rowHeight + fontSize}" font-family="sans-serif" font-size="${fontSize}" fill="${color}" stroke="none">${body}</text>` +
+      `</g>`
+    );
+  },
+  renderBoardSvg(card, helpers) {
+    const bounds = normalizeRectBounds(
+      helpers.numberOrZero(card.x),
+      helpers.numberOrZero(card.y),
+      helpers.numberOrZero(card.x2),
+      helpers.numberOrZero(card.y2),
+    );
+    const color = helpers.htmlspecialchars(card.color || "#000");
+    const fontSize = cardFontSize(card.size);
+    const rowHeight = Math.round(fontSize * 1.2);
+    return (
+      "<g " +
+      (card.id ? `id="${helpers.htmlspecialchars(card.id)}" ` : "") +
+      `class="card" stroke="${color}" stroke-width="${helpers.numberOrZero(card.size) | 0}" fill="none" ` +
+      helpers.renderTranslate(card) +
+      ">" +
+      `<rect class="card-box" x="${bounds.x}" y="${bounds.y}" width="${bounds.width}" height="${bounds.height}"></rect>` +
+      `<text class="card-label" x="${bounds.x + 4}" y="${bounds.y + fontSize}" font-family="sans-serif" font-size="${fontSize}" fill="${color}" stroke="none">${helpers.htmlspecialchars(String(card.label || "Title"))}</text>` +
+      `<text class="card-body" x="${bounds.x + 4}" y="${bounds.y + rowHeight + fontSize}" font-family="sans-serif" font-size="${fontSize}" fill="${color}" stroke="none">${helpers.htmlspecialchars(String(card.body || "Text"))}</text>` +
+      "</g>"
+    );
+  },
+});
+
 /**
  * Storage contracts keyed by tool id. The single source for the contract
  * methods consumed by persistence/render; tool runtime modules re-export their
@@ -376,6 +508,7 @@ export const STORAGE_CONTRACT_BY_ID = Object.freeze({
   ellipse: ellipseContract,
   "straight-line": straightLineContract,
   text: textContract,
+  card: cardContract,
 });
 
 export const PencilContract = pencilContract;
@@ -383,6 +516,7 @@ export const RectangleContract = rectangleContract;
 export const EllipseContract = ellipseContract;
 export const StraightLineContract = straightLineContract;
 export const TextContract = textContract;
+export const CardContract = cardContract;
 
 /**
  * Server-safe tool contracts: manifest metadata merged with the storage

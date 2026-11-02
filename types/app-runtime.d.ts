@@ -91,6 +91,31 @@ export type EllipseCreateMessage =
 export type EllipseUpdateMessage =
   WithMessageMetadata<EllipseTool.EllipseUpdateMessage>;
 
+export type CardCreateMessage = WithMessageMetadata<{
+  tool: ToolCode;
+  type: MessageType;
+  id: string;
+  color: string;
+  size: number;
+  opacity?: number;
+  x: number;
+  y: number;
+  x2: number;
+  y2: number;
+}>;
+
+export type CardUpdateMessage = WithMessageMetadata<{
+  tool: ToolCode;
+  type: MessageType;
+  id: string;
+  x?: number;
+  y?: number;
+  x2?: number;
+  y2?: number;
+  label?: string;
+  body?: string;
+}>;
+
 export type TextCreateMessage = WithMessageMetadata<TextTool.TextCreateMessage>;
 
 export type TextUpdateMessage = WithMessageMetadata<TextTool.TextUpdateMessage>;
@@ -133,6 +158,8 @@ export type BoardMessage =
   | RectangleUpdateMessage
   | EllipseCreateMessage
   | EllipseUpdateMessage
+  | CardCreateMessage
+  | CardUpdateMessage
   | TextCreateMessage
   | TextUpdateMessage
   | EraserDeleteMessage
