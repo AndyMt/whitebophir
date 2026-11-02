@@ -1,6 +1,6 @@
 /** @import { AppInitialPreferences, ColorPreset } from "../../types/app-runtime" */
 
-const DEFAULT_INITIAL_SIZE = 40;
+const DEFAULT_INITIAL_SIZE = 20;
 const DEFAULT_INITIAL_OPACITY = 1;
 const LOCAL_STORAGE_COLOR_KEY = "wbo.currentColor";
 const HEX_COLOR_RE = /^#[0-9a-fA-F]{6}$/;
