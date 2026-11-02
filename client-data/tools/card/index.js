@@ -11,6 +11,7 @@ import {
   pressShapeTool,
   releaseShapeTool,
 } from "../shape_tool.js";
+/** @typedef {import("../../js/board_write_module.js").RuntimeBoardMessage} RuntimeBoardMessage */
 
 export {
   cancelShapeToolTouchGesture as cancelTouchGesture,
@@ -27,7 +28,7 @@ export const mouseCursor = "crosshair";
 const contract = CardContract;
 
 /** @typedef {{tool: number, type: number, id: string, color: string, size: number, opacity?: number, x: number, y: number, x2: number, y2: number}} CardCreateMessage */
-/** @typedef {{tool: number, type: number, id: string, x?: number, y?: number, x2?: number, y2?: number, label?: string, body?: string}} CardUpdateMessage */
+/** @typedef {{tool: number, type: number, id: string, x?: number, y?: number, x2?: number, y2?: number, label?: string}} CardUpdateMessage */
 export { contract };
 export const shortcut = "k";
 
@@ -46,7 +47,7 @@ export function labelRowHeight(fontSize) {
   return Math.round(fontSize * 1.2);
 }
 
-/** @typedef {"label" | "body"} CardField */
+/** @typedef {"label"} CardField */
 /** @typedef {{input: HTMLInputElement, editorOverlay: ReturnType<typeof createBoardHtmlOverlay>, viewport: import("../../../types/app-runtime").ViewportController, editingField: CardField | null, editingId: string, sentText: string, lastSending: number, lastDrawnId: string, boundChange: (evt: Event | KeyboardEvent | FocusEvent) => void, boundBlur: () => void}} CardEditorState */
 /** @typedef {ReturnType<ReturnType<typeof createShapeToolBoot>> & CardEditorState} CardState */
 
@@ -83,7 +84,7 @@ function applyCardGeometry(group, data) {
   const top = Math.min(data.y2, y);
   const width = Math.abs(data.x2 - x);
   const height = Math.abs(data.y2 - y);
-  const rowHeight = labelRowHeight(fontSize);
+  const _rowHeight = labelRowHeight(fontSize);
 
   const rect = /** @type {SVGRectElement} */ (
     ensureCardChild(group, "card-box", "rect")
@@ -105,16 +106,7 @@ function applyCardGeometry(group, data) {
   if (typeof data.label === "string") label.textContent = data.label;
   else if (!label.textContent) label.textContent = "Title";
 
-  const body = /** @type {SVGTextElement} */ (
-    ensureCardChild(group, "card-body", "text")
-  );
-  body.setAttribute("font-family", "sans-serif");
-  body.setAttribute("font-size", String(fontSize));
-  body.setAttribute("stroke", "none");
-  body.setAttribute("x", String(left + 4));
-  body.setAttribute("y", String(top + rowHeight + fontSize));
-  if (typeof data.body === "string") body.textContent = data.body;
-  else if (!body.textContent) body.textContent = "Text";
+  // Body text rendering completely removed
 }
 
 /** @type {import("../shape_tool.js").ShapeToolConfig} */
@@ -282,23 +274,25 @@ function changeHandler(state, evt) {
     evt.key === "Enter" &&
     state.editingField === "label"
   ) {
-    startEdit(state, state.editingId, "body");
+    // Body editing removed - only label editing supported
     return;
   }
   if (!state.editingField || !state.editingId) return;
   const nextText = truncateText(state.input.value);
   if (state.input.value !== nextText) state.input.value = nextText;
   const card = getEditingCard(state);
-  const textElem = card?.querySelector(`:scope > .card-${state.editingField}`);
+  const textElem = card?.querySelector(`:scope > .card-label`);
   if (textElem) textElem.textContent = nextText;
   if (performance.now() - state.lastSending <= 100) return;
   if (state.sentText === nextText) return;
-  state.writes.drawAndSend({
-    tool: contract.toolCode,
-    type: MutationType.UPDATE,
-    id: state.editingId,
-    [state.editingField]: nextText,
-  });
+  state.writes.drawAndSend(
+    /** @type {RuntimeBoardMessage} */ ({
+      tool: contract.toolCode,
+      type: MutationType.UPDATE,
+      id: state.editingId,
+      label: nextText,
+    }),
+  );
   state.sentText = nextText;
   state.lastSending = performance.now();
 }
@@ -368,9 +362,9 @@ export function press(state, x, y, evt) {
     if (cardElem && cardElem.id && state.board.svg.contains(cardElem)) {
       const card = /** @type {SVGGElement} */ (cardElem);
       const rect = card.querySelector(":scope > .card-box");
-      const top = rect instanceof SVGRectElement ? rect.y.baseVal.value : y;
-      const rowHeight = labelRowHeight(cardFontSizeOf(card));
-      startEdit(state, card.id, y < top + rowHeight ? "label" : "body");
+      const _top = rect instanceof SVGRectElement ? rect.y.baseVal.value : y;
+      const _rowHeight = labelRowHeight(cardFontSizeOf(card));
+      startEdit(state, card.id, "label");
       evt.preventDefault();
       return;
     }

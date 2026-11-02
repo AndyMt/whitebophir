@@ -14,7 +14,7 @@ import {
 import { SocketEvents } from "./socket_events.js";
 
 /** @import { AppToolsState, BoardMessage, BufferedWrite, ClientTrackedMessage, LiveBoardMessage, RateLimitCosts, RateLimitKind } from "../../types/app-runtime" */
-/** @typedef {{tool: import("../tools/tool-order.js").ToolCode, type?: unknown, id?: unknown, parent?: string, txt?: unknown, _children?: unknown, clientMutationId?: string, socket?: string, userId?: string, color?: string, size?: number | string, opacity?: number, x?: number, y?: number, x2?: number, y2?: number, newid?: string, transform?: {a: number, b: number, c: number, d: number, e: number, f: number}}} RuntimeBoardMessage */
+/** @typedef {{tool: import("../tools/tool-order.js").ToolCode, type?: unknown, id?: unknown, parent?: string, txt?: unknown, _children?: unknown, clientMutationId?: string, socket?: string, userId?: string, color?: string, size?: number | string, opacity?: number, x?: number, y?: number, x2?: number, y2?: number, newid?: string, transform?: {a: number, b: number, c: number, d: number, e: number, f: number}, label?: string}} RuntimeBoardMessage */
 
 // Keep usage inside every server-sized interval, with room for transport jitter.
 const RATE_LIMIT_WINDOW_SAFETY_MS = 250;
