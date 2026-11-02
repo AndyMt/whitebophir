@@ -70,29 +70,36 @@ function ensureCardChild(group, className, tagName) {
 /**
  * @param {SVGGElement} group
  * @param {{x?: number, y?: number, x2: number, y2: number, label?: string, body?: string, size?: number}} data
+ * @param {CardState | undefined} [_state]
  */
-function applyCardGeometry(group, data) {
+function applyCardGeometry(group, data, _state) {
   group.setAttribute("class", "card");
-  const existingLabel = group.querySelector(":scope > .card-label");
   const fontSize =
     typeof data.size === "number" && data.size > 0
       ? cardFontSize(data.size)
-      : Number(existingLabel?.getAttribute("font-size")) || cardFontSize(40);
+      : Number(
+          group
+            .querySelector(":scope > .card-label")
+            ?.getAttribute("font-size"),
+        ) || cardFontSize(40);
   const x = data.x ?? data.x2;
   const y = data.y ?? data.y2;
   const left = Math.min(data.x2, x);
   const top = Math.min(data.y2, y);
   const width = Math.abs(data.x2 - x);
+  const minWidthPx = 1500; // Minimum width in board pixels
+  const clampedWidth = Math.max(width, minWidthPx); // Enforce minimum width
   const height = Math.abs(data.y2 - y);
-  const _rowHeight = labelRowHeight(fontSize);
+  const minHeightPx = 200; // Minimum height in board pixels
+  const clampedHeight = Math.max(height, minHeightPx); // Enforce minimum height
 
   const rect = /** @type {SVGRectElement} */ (
     ensureCardChild(group, "card-box", "rect")
   );
   rect.x.baseVal.value = left;
   rect.y.baseVal.value = top;
-  rect.width.baseVal.value = width;
-  rect.height.baseVal.value = height;
+  rect.width.baseVal.value = clampedWidth;
+  rect.height.baseVal.value = clampedHeight;
 
   const label = /** @type {SVGTextElement} */ (
     ensureCardChild(group, "card-label", "text")
@@ -101,12 +108,10 @@ function applyCardGeometry(group, data) {
   label.setAttribute("font-size", String(fontSize));
   label.setAttribute("stroke", "none");
   label.setAttribute("text-anchor", "middle");
-  label.setAttribute("x", String(left + width / 2));
+  label.setAttribute("x", String(left + clampedWidth / 2));
   label.setAttribute("y", String(top + fontSize));
   if (typeof data.label === "string") label.textContent = data.label;
   else if (!label.textContent) label.textContent = "Title";
-
-  // Body text rendering completely removed
 }
 
 /** @type {import("../shape_tool.js").ShapeToolConfig} */
@@ -118,18 +123,29 @@ const config = {
   uidPrefix: "card",
   isShapeElement: (element) =>
     String(element?.tagName).toLowerCase() === contract.storedTagName,
-  makeCreateMessage: makeSeedShapeCreateMessage,
+  makeCreateMessage: (state, id, x, y) => {
+    const message = makeSeedShapeCreateMessage(state, id, x, y);
+    // Enforce minimum width of 1500px and minimum height of 200px in board coordinates
+    message.x2 = x + 1500;
+    message.y2 = y + 200;
+    return message;
+  },
   makeUpdateMessage: (state, x, y) => {
     const start = state.currentShape;
-    return start
-      ? makeBoxShapeUpdateMessage(
-          /** @type {any} */ (contract.toolCode),
-          start.id,
-          start,
-          x,
-          y,
-        )
-      : null;
+    if (!start) return null;
+    const message = makeBoxShapeUpdateMessage(
+      /** @type {any} */ (contract.toolCode),
+      start.id,
+      start,
+      x,
+      y,
+    );
+    // Enforce minimum width of 1500px in board coordinates
+    const width = Math.abs(message.x2 - (message.x ?? message.x2));
+    if (width < 1500) {
+      message.x2 = (message.x ?? message.x2) + 1500;
+    }
+    return message;
   },
   makeFallbackShape: (data) => ({
     id: data.id,
@@ -138,13 +154,17 @@ const config = {
     x2: data.x2,
     y2: data.y2,
   }),
-  applyShapeGeometry: (group, data) => {
-    if (data && typeof data === "object" && "x2" in data && "y2" in data) {
+  applyShapeGeometry: (
+    /** @type {SVGElement} */ group,
+    /** @type {import("../shape_tool.js").ShapeRuntimeMessage} */ data,
+  ) => {
+    if (data && "x2" in data && "y2" in data) {
       applyCardGeometry(
         /** @type {SVGGElement} */ (group),
-        /** @type {{x?: number, y?: number, x2: number, y2: number, label?: string, body?: string, size?: number}} */ (
+        /** @type {{x?: number, y?: number, x2: number, y2: number, label?: string, size?: number}} */ (
           data
         ),
+        undefined,
       );
     }
   },
@@ -269,14 +289,7 @@ function changeHandler(state, evt) {
     stopEdit(state);
     return;
   }
-  if (
-    evt instanceof KeyboardEvent &&
-    evt.key === "Enter" &&
-    state.editingField === "label"
-  ) {
-    // Body editing removed - only label editing supported
-    return;
-  }
+
   if (!state.editingField || !state.editingId) return;
   const nextText = truncateText(state.input.value);
   if (state.input.value !== nextText) state.input.value = nextText;

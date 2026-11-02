@@ -47,7 +47,7 @@ const files = getStagedFiles();
 if (files.length === 0) {
   process.exit(0);
 }
-
+console.log(biomeBin);
 execFileSync(
   biomeBin,
   [
