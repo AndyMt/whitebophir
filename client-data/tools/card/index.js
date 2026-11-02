@@ -99,7 +99,8 @@ function applyCardGeometry(group, data) {
   label.setAttribute("font-family", "sans-serif");
   label.setAttribute("font-size", String(fontSize));
   label.setAttribute("stroke", "none");
-  label.setAttribute("x", String(left + 4));
+  label.setAttribute("text-anchor", "middle");
+  label.setAttribute("x", String(left + width / 2));
   label.setAttribute("y", String(top + fontSize));
   if (typeof data.label === "string") label.textContent = data.label;
   else if (!label.textContent) label.textContent = "Title";
@@ -253,8 +254,11 @@ function startEdit(state, id, field) {
   );
   state.input.style.fontSize = `${layoutFontSize}px`;
   state.input.style.lineHeight = `${layoutFontSize}px`;
-  state.input.style.background = "transparent";
-  state.input.style.border = "none";
+  state.input.style.boxSizing = "border-box";
+  state.input.style.background = "#fff";
+  state.input.style.border = "1px solid #4b5563";
+  state.input.style.outline = "none";
+  state.input.style.textAlign = field === "label" ? "center" : "left";
   state.input.style.padding = "0";
   state.input.style.color = state.preferences.getColor();
   syncEditorLayout(state);

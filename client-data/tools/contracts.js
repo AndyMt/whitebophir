@@ -467,7 +467,7 @@ const cardContract = defineStoredToolContract("card", {
       ` stroke="${color}" stroke-width="${size}" fill="none"` +
       `${opacity}${transform}>` +
       `<rect class="card-box" x="${bounds.x}" y="${bounds.y}" width="${bounds.width}" height="${bounds.height}"></rect>` +
-      `<text class="card-label" x="${bounds.x + 4}" y="${bounds.y + fontSize}" font-family="sans-serif" font-size="${fontSize}" fill="${color}" stroke="none">${label}</text>` +
+      `<text class="card-label" x="${bounds.x + bounds.width / 2}" y="${bounds.y + fontSize}" text-anchor="middle" font-family="sans-serif" font-size="${fontSize}" fill="${color}" stroke="none">${label}</text>` +
       `<text class="card-body" x="${bounds.x + 4}" y="${bounds.y + rowHeight + fontSize}" font-family="sans-serif" font-size="${fontSize}" fill="${color}" stroke="none">${body}</text>` +
       `</g>`
     );
@@ -489,7 +489,7 @@ const cardContract = defineStoredToolContract("card", {
       helpers.renderTranslate(card) +
       ">" +
       `<rect class="card-box" x="${bounds.x}" y="${bounds.y}" width="${bounds.width}" height="${bounds.height}"></rect>` +
-      `<text class="card-label" x="${bounds.x + 4}" y="${bounds.y + fontSize}" font-family="sans-serif" font-size="${fontSize}" fill="${color}" stroke="none">${helpers.htmlspecialchars(String(card.label || "Title"))}</text>` +
+      `<text class="card-label" x="${bounds.x + bounds.width / 2}" y="${bounds.y + fontSize}" text-anchor="middle" font-family="sans-serif" font-size="${fontSize}" fill="${color}" stroke="none">${helpers.htmlspecialchars(String(card.label || "Title"))}</text>` +
       `<text class="card-body" x="${bounds.x + 4}" y="${bounds.y + rowHeight + fontSize}" font-family="sans-serif" font-size="${fontSize}" fill="${color}" stroke="none">${helpers.htmlspecialchars(String(card.body || "Text"))}</text>` +
       "</g>"
     );
