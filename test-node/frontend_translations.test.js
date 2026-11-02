@@ -30,6 +30,7 @@ test("frontend translation catalog covers rendered and runtime UI keys", () => {
     "ban_user_confirmation",
     "back_to_home",
     "cancel",
+    "card",
     "clear",
     "click_to_zoom",
     "collaborative_whiteboard",

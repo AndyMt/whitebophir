@@ -20,10 +20,10 @@ function addOptimisticAffectedIds(ids, message) {
   }
   switch (message.type) {
     case MutationType.COPY:
-      ids.add(message.newid);
+      if ("newid" in message) ids.add(message.newid);
       return;
     case MutationType.APPEND:
-      ids.add(message.parent);
+      if ("parent" in message) ids.add(message.parent);
       return;
     case MutationType.CLEAR:
       return;
@@ -54,7 +54,7 @@ function addOptimisticDependencyIds(ids, message) {
       if ("id" in message) ids.add(message.id);
       return;
     case MutationType.APPEND:
-      ids.add(message.parent);
+      if ("parent" in message) ids.add(message.parent);
   }
 }
 

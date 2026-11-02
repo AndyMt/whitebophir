@@ -8,18 +8,19 @@ const INDEX_PATH = "../client-data/tools/index.js";
 test("wire tool codes match the documented protocol", async () => {
   const { TOOL_CODE_BY_ID } = await import(MANIFEST_PATH);
   assert.deepEqual(TOOL_CODE_BY_ID, {
-    pencil: 1,
-    "straight-line": 2,
+    card: 1,
+    text: 2,
     rectangle: 3,
     ellipse: 4,
-    text: 5,
-    eraser: 6,
-    hand: 7,
-    grid: 8,
-    download: 9,
-    zoom: 10,
-    clear: 11,
-    cursor: 12,
+    pencil: 5,
+    "straight-line": 6,
+    eraser: 7,
+    hand: 8,
+    grid: 9,
+    download: 10,
+    zoom: 11,
+    clear: 12,
+    cursor: 13,
   });
 });
 

@@ -1,0 +1,23 @@
+#drawingArea g.card .card-box {
+  fill: none;
+}
+
+#drawingArea g.card text {
+  stroke: none;
+  font-family: sans-serif;
+  user-select: none;
+  pointer-events: none;
+}
+
+#drawingArea g.card .card-box {
+  fill: #fff;
+}
+
+#drawingArea g.card .card-label {
+  font-weight: bold;
+}
+
+#cardToolInput {
+  font-family: sans-serif;
+  overflow: hidden;
+}

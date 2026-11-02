@@ -1,5 +1,6 @@
 {
   "ar": {
+    "card": "بطاقة",
     "white-out": "مزيل الحبر",
     "board_name_placeholder": "اسم اللوحة",
     "circle": "دائرة",
@@ -114,6 +115,7 @@
     "revoke_temporary_moderator": "إلغاء إشراف {name} المؤقت"
   },
   "be": {
+    "card": "Картка",
     "white-out": "Замазка",
     "board_name_placeholder": "Назва дошкі…",
     "circle": "Круг",
@@ -228,6 +230,7 @@
     "revoke_temporary_moderator": "Скасаваць часовыя правы мадэратара для {name}"
   },
   "ca": {
+    "card": "Targeta",
     "white-out": "Corrector blanc",
     "board_name_placeholder": "Nom de la pissarra...",
     "circle": "Cercle",
@@ -342,6 +345,7 @@
     "revoke_temporary_moderator": "Retira els permisos de moderador temporal a {name}"
   },
   "de": {
+    "card": "Karte",
     "board_name_placeholder": "Name des Whiteboards…",
     "circle": "Kreis",
     "click_to_toggle": "Klicke zum Umschalten",
@@ -456,6 +460,7 @@
     "revoke_temporary_moderator": "Temporäre Moderationsrechte von {name} entziehen"
   },
   "en": {
+    "card": "Card",
     "white-out": "White-out",
     "board_name_placeholder": "Name of the board…",
     "circle": "Circle",
@@ -570,6 +575,7 @@
     "revoke_temporary_moderator": "Revoke temporary moderator access from {name}"
   },
   "es": {
+    "card": "Tarjeta",
     "board_name_placeholder": "Nombre de la pizarra…",
     "circle": "Círculo",
     "click_to_toggle": "haz clic para alternar",
@@ -684,6 +690,7 @@
     "revoke_temporary_moderator": "Revocar la moderación temporal de {name}"
   },
   "fr": {
+    "card": "Carte",
     "board_name_placeholder": "Nom du tableau…",
     "circle": "Cercle",
     "click_to_toggle": "cliquer pour changer",
@@ -798,6 +805,7 @@
     "configuration": "Configuration"
   },
   "hu": {
+    "card": "Kártya",
     "white-out": "Lefedő",
     "board_name_placeholder": "Tábla neve…",
     "circle": "Kör",
@@ -912,6 +920,7 @@
     "revoke_temporary_moderator": "{name} ideiglenes moderátori jogainak visszavonása"
   },
   "id": {
+    "card": "Kartu",
     "white-out": "Cairan koreksi",
     "board_name_placeholder": "Nama papan…",
     "circle": "Lingkaran",
@@ -1026,6 +1035,7 @@
     "revoke_temporary_moderator": "Cabut akses moderator sementara {name}"
   },
   "it": {
+    "card": "Scheda",
     "board_name_placeholder": "Nome della lavagna…",
     "circle": "Cerchio",
     "click_to_toggle": "Fai clic per attivare o disattivare",
@@ -1140,6 +1150,7 @@
     "revoke_temporary_moderator": "Revoca i permessi di moderatore temporaneo a {name}"
   },
   "ja": {
+    "card": "カード",
     "board_name_placeholder": "ボードの名前",
     "circle": "円",
     "click_to_toggle": "クリックして切り替えます",
@@ -1254,6 +1265,7 @@
     "revoke_temporary_moderator": "{name} の一時モデレーター権限を取り消す"
   },
   "my": {
+    "card": "က드",
     "board_name_placeholder": "ဝှိုက်ဘုတ်အမည် ... ",
     "circle": "စက်ဝိုင်း",
     "click_to_toggle": "ပြောင်းလဲရန် နှိပ်ပါ",
@@ -1368,6 +1380,7 @@
     "revoke_temporary_moderator": "{name} ၏ ယာယီကြီးကြပ်ခွင့်ကို ရုပ်သိမ်းရန်"
   },
   "pt": {
+    "card": "Cartão",
     "white-out": "Corretivo",
     "board_name_placeholder": "Nome do quadro...",
     "circle": "Círculo",
@@ -1482,6 +1495,7 @@
     "revoke_temporary_moderator": "Revogar a moderação temporária de {name}"
   },
   "ru": {
+    "card": "Карточка",
     "board_name_placeholder": "Название доски",
     "circle": "Круг",
     "click_to_toggle": "нажмите, чтобы переключиться",
@@ -1596,6 +1610,7 @@
     "revoke_temporary_moderator": "Отозвать временные права модератора у {name}"
   },
   "sw": {
+    "card": "Kadi",
     "board_name_placeholder": "Jina la ubao mweupe ...",
     "circle": "mduara",
     "click_to_toggle": "Bofya ili kubadilisha",
@@ -1710,6 +1725,7 @@
     "revoke_temporary_moderator": "Ondoa ruhusa za muda za usimamizi za {name}"
   },
   "th": {
+    "card": "การ์ด",
     "board_name_placeholder": "ชื่อไวท์บอร์ด ...",
     "circle": "วงกลม",
     "click_to_toggle": "คลิกเพื่อสลับ",
@@ -1824,6 +1840,7 @@
     "revoke_temporary_moderator": "ถอนสิทธิ์ผู้ดูแลชั่วคราวของ {name}"
   },
   "uk": {
+    "card": "Картка",
     "white-out": "Коректор",
     "board_name_placeholder": "Назва дошки…",
     "circle": "Коло",
@@ -1938,6 +1955,7 @@
     "revoke_temporary_moderator": "Відкликати тимчасові права модератора у {name}"
   },
   "vi": {
+    "card": "Thẻ",
     "white-out": "Bút xóa",
     "board_name_placeholder": "Tên bảng…",
     "circle": "Hình tròn",
@@ -2052,6 +2070,7 @@
     "revoke_temporary_moderator": "Thu hồi quyền kiểm duyệt tạm thời của {name}"
   },
   "zh-CN": {
+    "card": "卡片",
     "board_name_placeholder": "白板名称",
     "circle": "圆",
     "click_to_toggle": "点击以切换",
@@ -2166,6 +2185,7 @@
     "revoke_temporary_moderator": "撤销 {name} 的临时管理员权限"
   },
   "zh-TW": {
+    "card": "卡片",
     "board_name_placeholder": "白板名稱",
     "circle": "圓形",
     "click_to_toggle": "點擊以切換",
@@ -2280,6 +2300,7 @@
     "revoke_temporary_moderator": "撤銷 {name} 的臨時管理員權限"
   },
   "pl": {
+    "card": "Karta",
     "board_name_placeholder": "Nazwa tablicy",
     "circle": "Okrąg",
     "click_to_toggle": "kliknij, aby przełączyć",

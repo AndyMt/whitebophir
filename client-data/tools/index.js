@@ -1,3 +1,4 @@
+import * as CardModule from "./card/index.js";
 import * as ClearModule from "./clear/index.js";
 import * as CursorModule from "./cursor/index.js";
 import * as DownloadModule from "./download/index.js";
@@ -107,6 +108,7 @@ export const TOOL_MODULES_BY_ID = /** @satisfies {ToolModulesById} */ ({
   zoom: ZoomModule,
   clear: ClearModule,
   cursor: CursorModule,
+  card: CardModule,
 });
 
 export const TOOLS = TOOL_IDS.map((toolId) =>
@@ -130,6 +132,7 @@ export const Download = TOOL_BY_ID.download;
 export const Zoom = TOOL_BY_ID.zoom;
 export const Clear = TOOL_BY_ID.clear;
 export const Cursor = TOOL_BY_ID.cursor;
+export const Card = TOOL_BY_ID.card;
 export const TOOLBAR_TOOLS = /** @type {ReadonlyArray<ToolDefinition>} */ (
   TOOLBAR_TOOL_IDS.map(
     (toolId) => /** @type {ToolDefinition} */ (TOOL_BY_ID[toolId]),
